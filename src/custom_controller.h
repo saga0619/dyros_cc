@@ -7,11 +7,16 @@ class CustomController
 public:
     CustomController(DataContainer &dc,RobotData &rd);
     Eigen::VectorQd getControl();
-    void compute_slow();
-    void compute_fast();
+
+    void taskCommandToCC(TaskCommand tc_);
+    
+    void computeSlow();
+    void computeFast();
     
     DataContainer &dc_;
     RobotData &rd_;
+    WholebodyController &wbc_;
+    TaskCommand tc;
 
 private:
     Eigen::VectorQd ControlVal_;

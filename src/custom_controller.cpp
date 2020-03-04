@@ -1,7 +1,6 @@
 #include "custom_controller.h"
-#include "tocabi_controller/wholebody_controller.h"
 
-CustomController::CustomController(DataContainer &dc, RobotData &rd) : dc_(dc), rd_(rd)
+CustomController::CustomController(DataContainer &dc, RobotData &rd) : dc_(dc), rd_(rd), wbc_(dc.wbc_)
 {
     ControlVal_.setZero();
 }
@@ -10,8 +9,12 @@ Eigen::VectorQd CustomController::getControl()
 {
     return ControlVal_;
 }
+void CustomController::taskCommandToCC(TaskCommand tc_)
+{
+    tc = tc_;
+}
 
-void CustomController::compute_slow()
+void CustomController::computeSlow()
 {
     //rd_.control_time_; current time
     //rd_.link_[Right_Foot].Jac : current rightfoot jac
@@ -20,11 +23,12 @@ void CustomController::compute_slow()
     //rd_.link_[Right_Foot]
 
     //ControlVal_=
-
-    
 }
 
-void CustomController::compute_fast()
-{
+void CustomController::computeFast()
+{   
+    if (tc.mode == 10)
+    {
 
+    }
 }
