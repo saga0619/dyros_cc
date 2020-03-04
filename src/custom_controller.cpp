@@ -42,11 +42,18 @@ void CustomController::computeSlow()
 
         ControlVal_ = wbc_.task_control_torque_QP2(rd_, rd_.J_task, rd_.f_star);
     }
+    else if(tc.mode == 11)
+    {
+        //task controller for mode 11 ....
+    }
 }
 
 void CustomController::computeFast()
 {
     if (tc.mode == 10)
+    {
+    }
+    else if (tc.mode == 11)
     {
     }
 }
