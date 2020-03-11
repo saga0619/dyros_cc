@@ -34,6 +34,14 @@ void CustomController::computeSlow()
 
         rd_.J_task = rd_.link_[Pelvis].Jac;
 
+        if (tc.custom_taskgain)
+        {
+            rd_.link_[Pelvis].pos_p_gain = Vector3d::Ones() * tc.pos_p;
+            rd_.link_[Pelvis].pos_d_gain = Vector3d::Ones() * tc.pos_d;
+            rd_.link_[Pelvis].rot_p_gain = Vector3d::Ones() * tc.ang_p;
+            rd_.link_[Pelvis].rot_d_gain = Vector3d::Ones() * tc.ang_d;
+        }
+
         rd_.link_[Pelvis].x_desired = tc.ratio * rd_.link_[Left_Foot].xpos + (1.0 - tc.ratio) * rd_.link_[Right_Foot].xpos;
         rd_.link_[Pelvis].x_desired(2) = tc.height + tc.ratio * rd_.link_[Left_Foot].xpos(2) + (1.0 - tc.ratio) * rd_.link_[Right_Foot].xpos(2);
         rd_.link_[Pelvis].Set_Trajectory_from_quintic(rd_.control_time_, tc.command_time, tc.command_time + tc.traj_time);
@@ -42,7 +50,7 @@ void CustomController::computeSlow()
 
         ControlVal_ = wbc_.task_control_torque_QP2(rd_, rd_.J_task, rd_.f_star);
     }
-    else if(tc.mode == 11)
+    else if (tc.mode == 11)
     {
         //task controller for mode 11 ....
     }
