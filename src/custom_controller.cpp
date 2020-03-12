@@ -65,7 +65,7 @@ void CustomController::computeSlow()
             rd_.link_[COM_id].pos_p_gain = Vector3d::Ones() * tc.pos_p;
             rd_.link_[COM_id].pos_d_gain = Vector3d::Ones() * tc.pos_d;
             rd_.link_[COM_id].rot_p_gain = Vector3d::Ones() * tc.ang_p;
-            rd_.link_[COM_id].rot_d_gain = Vector3d::Ones() * tc.ang_d;\
+            rd_.link_[COM_id].rot_d_gain = Vector3d::Ones() * tc.ang_d;
         }
 
         rd_.link_[COM_id].x_desired = tc.ratio * rd_.link_[Left_Foot].xpos + (1.0 - tc.ratio) * rd_.link_[Right_Foot].xpos;
