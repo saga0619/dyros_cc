@@ -126,3 +126,7 @@ void CustomController::computeFast()
     {
     }
 }
+
+void CustomController::computePlanner()
+{
+}
