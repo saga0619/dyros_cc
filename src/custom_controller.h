@@ -12,6 +12,7 @@ public:
     
     void computeSlow();
     void computeFast();
+    void computePlanner();
     
     DataContainer &dc_;
     RobotData &rd_;
