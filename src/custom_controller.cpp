@@ -47,7 +47,7 @@ void CustomController::computeSlow()
         rd_.link_[Pelvis].Set_Trajectory_from_quintic(rd_.control_time_, tc.command_time, tc.command_time + tc.traj_time);
 
         rd_.f_star = wbc_.getfstar6d(rd_, Pelvis);
-        wbc_.task_control_torque_QP(rd_, rd_.J_task, rd_.f_star, ControlVal_);
+        ControlVal_ = wbc_.task_control_torque_QP(rd_, rd_.J_task, rd_.f_star);
     }
     else if (tc.mode == 11)
     {
@@ -75,7 +75,7 @@ void CustomController::computeSlow()
         //rd_.link_[COM_id].Set_T
         rd_.f_star = wbc_.getfstar6d(rd_, COM_id);
 
-        wbc_.task_control_torque_QP(rd_, rd_.J_task, rd_.f_star,ControlVal_);
+        ControlVal_ = wbc_.task_control_torque_QP(rd_, rd_.J_task, rd_.f_star);
         //task controller for mode 11 ....
     }
     else if (tc.mode == 12)
@@ -112,7 +112,7 @@ void CustomController::computeSlow()
         rd_.f_star.segment(0, 6) = wbc_.getfstar6d(rd_, COM_id);
         rd_.f_star.segment(6, 3) = wbc_.getfstar_rot(rd_, Upper_Body);
 
-        wbc_.task_control_torque_QP(rd_, rd_.J_task, rd_.f_star,ControlVal_);
+        ControlVal_ = wbc_.task_control_torque_QP(rd_, rd_.J_task, rd_.f_star);
         //task controller for mode 11 ....
     }
 }
